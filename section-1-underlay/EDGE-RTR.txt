@@ -30,7 +30,7 @@ router ospf 100
 
 ! --- Interfaces ---
 interface g0/0
-  description to_core
+  description to_CORE
   ip address 10.35.0.1 255.255.255.248
   ip ospf 100 area 0
   no shutdown
