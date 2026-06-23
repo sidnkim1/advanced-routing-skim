@@ -40,13 +40,13 @@ interface g0/0
 
 interface g0/1
   description to_edge
-  ip address 10.35.0.13 255.255.255.252
+  ip address 10.35.0.29 255.255.255.252
   ip ospf 100 area 0
   no shutdown
 
 interface g0/2
   description to_BB-RTR-3
-  ip address 10.35.4.161 255.255.255.252
+  ip address 10.35.0.26 255.255.255.252
   ip ospf 100 area 0
   no shutdown
 
