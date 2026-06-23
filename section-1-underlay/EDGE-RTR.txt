@@ -43,7 +43,7 @@ interface g0/1
 
 interface g0/2
   description to_BB-RTR-2
-  ip address 10.35.0.14 255.255.255.252
+  ip address 10.35.0.30 255.255.255.252
   ip ospf 100 area 0
   no shutdown
 
