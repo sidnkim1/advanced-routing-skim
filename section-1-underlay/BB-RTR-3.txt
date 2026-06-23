@@ -55,25 +55,25 @@ interface g0/2
 
 interface g0/3
   description to_LR-AR4-1
-  ip address 10.35.4.165 255.255.255.252
+  ip address 10.35.4.161 255.255.255.252
   ip ospf 100 area 4
   no shutdown
 
 interface g0/4
   description to_LR-AR4-2
-  ip address 10.35.4.169 255.255.255.252
+  ip address 10.35.4.165 255.255.255.252
   ip ospf 100 area 4
   no shutdown
 
 interface g0/5
   description to_LR-AR3-1
-  ip address 10.35.3.141 255.255.255.252
+  ip address 10.35.3.137 255.255.255.252
   ip ospf 100 area 3
   no shutdown
 
 interface g0/6
   description to_LR-AR3-2
-  ip address 10.35.3.145 255.255.255.252
+  ip address 10.35.3.141 255.255.255.252
   ip ospf 100 area 3
   no shutdown
 
