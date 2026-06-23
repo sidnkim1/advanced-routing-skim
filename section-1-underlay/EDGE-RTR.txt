@@ -1,0 +1,51 @@
+enable
+configure terminal
+
+hostname EDGE-RTR
+
+enable secret cisco
+
+! --- Local Access ---
+line con 0
+  logging synchronous
+  login local
+  exit
+
+line vty 0 4
+  logging synchronous
+  login local
+  exit
+
+! --- Loopback ---
+interface loopback0
+  ip address 10.255.35.1 255.255.255.255
+  ip ospf 100 area 0
+
+! --- OSPF Process ---
+router ospf 100
+  router-id 10.255.35.1
+ 
+  ! Area 0 summary (core)
+  area 0 range 10.35.0.0 255.255.255.192
+
+! --- Interfaces ---
+interface g0/0
+  description to_core
+  ip address 10.35.0.1 255.255.255.248
+  ip ospf 100 area 0
+  no shutdown
+
+interface g0/1
+  description to_BB-RTR-1
+  ip address 10.35.0.9 255.255.255.252
+  ip ospf 100 area 0
+  no shutdown
+
+interface g0/2
+  description to_BB-RTR-2
+  ip address 10.35.0.14 255.255.255.252
+  ip ospf 100 area 0
+  no shutdown
+
+end
+write memory
