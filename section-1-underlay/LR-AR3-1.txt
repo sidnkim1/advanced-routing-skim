@@ -27,19 +27,19 @@ router ospf 100
 
 ! --- Interfaces ---
 interface g0/0
-  description to_LR-AR3-2
-  ip address 10.35.3.149 255.255.255.252
+  description to_BR-RTR-3
+  ip address 10.35.3.138 255.255.255.252
   ip ospf 100 area 3
   no shutdown
 
 interface g0/1
-  description to_BB-RTR-3
-  ip address 10.35.3.141 255.255.255.252
+  description to_BB-RTR-5
+  ip address 10.35.3.130 255.255.255.252
   ip ospf 100 area 3
   no shutdown
 
 interface g0/2
-  description to_BB-RTR-5
+  description to_LR-RTR3-2
   ip address 10.35.3.145 255.255.255.252
   ip ospf 100 area 3
   no shutdown
