@@ -1,1 +1,66 @@
+enable
+configure terminal
 
+hostname BB-RTR-1
+
+enable secret cisco
+
+! --- Local Access ---
+line con 0
+  logging synchronous
+  login local
+  exit
+
+line vty 0 4
+  logging synchronous
+  login local
+  exit
+
+! --- Loopback ---
+interface loopback0
+  ip address 10.255.35.2 255.255.255.255
+  ip ospf 100 area 0
+
+! --- OSPF Process ---
+router ospf 100
+  router-id 10.255.35.2
+ 
+  ! Area 0 summary (core)
+  area 0 range 10.35.0.0 255.255.255.192
+ 
+  ! Area 1 summary (top-left cluster)
+  area 1 range 10.35.1.64 255.255.255.224
+
+! --- Interfaces ---
+interface g0/0
+  description to_core
+  ip address 10.35.0.2 255.255.255.248
+  ip ospf 100 area 0
+  no shutdown
+
+interface g0/1
+  description to_edge
+  ip address 10.35.0.10 255.255.255.252
+  ip ospf 100 area 0
+  no shutdown
+
+interface g0/2
+  description to_BB-RTR-4
+  ip address 10.35.1.65 255.255.255.252
+  ip ospf 100 area 0
+  no shutdown
+
+interface g0/3
+  description to_LR-AR1-1
+  ip address 10.35.1.69 255.255.255.252
+  ip ospf 100 area 1
+  no shutdown
+
+interface g0/4
+  description to_LR-AR1-2
+  ip address 10.35.1.73 255.255.255.252
+  ip ospf 100 area 1
+  no shutdown
+
+end
+write memory
