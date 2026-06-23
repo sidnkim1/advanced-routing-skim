@@ -53,27 +53,27 @@ interface g0/2
   ip ospf 100 area 0
   no shutdown
 
-interface g0/3
-  description to_LR-AR1-2
-  ip address 10.35.1.81 255.255.255.252
+interface g0/4
+  description to_LR-AR1-1
+  ip address 10.35.1.73 255.255.255.252
   ip ospf 100 area 1
   no shutdown
 
-interface g0/4
-  description to_LR-AR1-1
+interface g0/3
+  description to_LR-AR1-2
   ip address 10.35.1.77 255.255.255.252
   ip ospf 100 area 1
   no shutdown
 
 interface g0/5
   description to_LR-AR2-1
-  ip address 10.35.2.101 255.255.255.252
+  ip address 10.35.2.97 255.255.255.252
   ip ospf 100 area 2
   no shutdown
 
 interface g0/6
   description to_LR-AR2-2
-  ip address 10.35.2.105 255.255.255.252
+  ip address 10.35.2.101 255.255.255.252
   ip ospf 100 area 2
   no shutdown
 
