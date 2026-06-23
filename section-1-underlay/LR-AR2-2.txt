@@ -1,0 +1,48 @@
+enable
+configure terminal
+
+hostname LR-AR2-2
+
+enable secret cisco
+
+! --- Local Access ---
+line con 0
+  logging synchronous
+  login local
+  exit
+
+line vty 0 4
+  logging synchronous
+  login local
+  exit
+
+! --- Loopback ---
+interface loopback0
+  ip address 10.255.35.10 255.255.255.255
+  ip ospf 100 area 2
+
+! --- OSPF Process ---
+router ospf 100
+  router-id 10.255.35.10
+
+! --- Interfaces ---
+interface g0/0
+  description to_LR-AR2-1
+  ip address 10.35.2.118 255.255.255.252
+  ip ospf 100 area 2
+  no shutdown
+
+interface g0/1
+  description to_BB-RTR-4
+  ip address 10.35.2.106 255.255.255.252
+  ip ospf 100 area 2
+  no shutdown
+
+interface g0/2
+  description to_BB-RTR-5
+  ip address 10.35.2.114 255.255.255.252
+  ip ospf 100 area 2
+  no shutdown
+
+end
+write memory
