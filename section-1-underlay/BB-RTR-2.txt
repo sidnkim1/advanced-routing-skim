@@ -33,13 +33,13 @@ router ospf 100
 
 ! --- Interfaces ---
 interface g0/0
-  description to_core
+  description to_CORE
   ip address 10.35.0.3 255.255.255.248
   ip ospf 100 area 0
   no shutdown
 
 interface g0/1
-  description to_edge
+  description to_EDGE-RTR
   ip address 10.35.0.29 255.255.255.252
   ip ospf 100 area 0
   no shutdown
@@ -50,15 +50,15 @@ interface g0/2
   ip ospf 100 area 0
   no shutdown
 
-interface g0/3
+interface g0/4
   description to_LR-AR4-1
-  ip address 10.35.4.173 255.255.255.252
+  ip address 10.35.4.169 255.255.255.252
   ip ospf 100 area 4
   no shutdown
 
-interface g0/4
+interface g0/3
   description to_LR-AR4-2
-  ip address 10.35.4.177 255.255.255.252
+  ip address 10.35.4.173 255.255.255.252
   ip ospf 100 area 4
   no shutdown
 
