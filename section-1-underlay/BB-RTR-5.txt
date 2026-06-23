@@ -43,13 +43,13 @@ interface g0/0
 
 interface g0/1
   description to_BB-RTR-4
-  ip address 10.35.2.98 255.255.255.252
+  ip address 10.35.0.18 255.255.255.252
   ip ospf 100 area 0
   no shutdown
 
 interface g0/2
   description to_BB-RTR-3
-  ip address 10.35.3.130 255.255.255.252
+  ip address 10.35.0.20 255.255.255.252
   ip ospf 100 area 0
   no shutdown
 
@@ -59,21 +59,21 @@ interface g0/3
   ip ospf 100 area 2
   no shutdown
 
-interface g0/4
+interface g0/5
   description to_LR-AR2-2
   ip address 10.35.2.113 255.255.255.252
   ip ospf 100 area 2
   no shutdown
 
-interface g0/5
+interface g0/6
   description to_LR-AR3-1
-  ip address 10.35.3.134 255.255.255.252
+  ip address 10.35.3.131 255.255.255.252
   ip ospf 100 area 3
   no shutdown
 
-interface g0/6
+interface g0/4
   description to_LR-AR3-2
-  ip address 10.35.3.138 255.255.255.252
+  ip address 10.35.3.137 255.255.255.252
   ip ospf 100 area 3
   no shutdown
 
