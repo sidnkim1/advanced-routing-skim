@@ -74,6 +74,8 @@ router bgp 65501
   neighbor 10.255.35.13 next-hop-self
   neighbor 10.255.35.14 next-hop-self
 
+  network 0.0.0.0
+
 ! --- Interfaces ---
 interface g0/0
   description to_CORE
