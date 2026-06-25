@@ -80,7 +80,7 @@ router bgp 65501
 
   network 0.0.0.0
 
-! --- Static Routes ---
+! --- Default Routes ---
 ip route 0.0.0.0 0.0.0.0 dhcp
 
 ! --- Interfaces ---
@@ -102,7 +102,8 @@ interface g0/2
   ip ospf 100 area 0
   no shutdown
 
-interface GigabitEthernet0/3
+interface g0/3
+  description to_NAT
   ip address dhcp
   no shutdown
 
