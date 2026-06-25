@@ -4,7 +4,7 @@ configure terminal
 hostname LR-AR4-1
 
 enable secret cisco
-enable cisco secret cisco
+username cisco secret cisco
 
 ! --- Local Access ---
 line con 0
