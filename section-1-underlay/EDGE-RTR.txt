@@ -34,6 +34,7 @@ router bgp 65501
   bgp log-neighbor-changes
 
   network 0.0.0.0 mask 0.0.0.0
+  redistribute static
 
   neighbor 10.255.35.2 remote-as 65501
   neighbor 10.255.35.3 remote-as 65501
