@@ -77,6 +77,9 @@ router bgp 65501
 
   network 0.0.0.0
 
+! --- Static Routes ---
+ip route 0.0.0.0 0.0.0.0 dhcp
+
 ! --- Interfaces ---
 interface g0/0
   description to_CORE
