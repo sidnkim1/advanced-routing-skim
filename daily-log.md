@@ -24,4 +24,20 @@ Notes:
 - Network convergence observed after link changes
 
 ## 6/25/26
+- Configured full-mesh iBGP (AS 65501) using loopback peering on all routers
+- Applied update-source loopback0 and next-hop-self for all neighbors
+- Configured EDGE router to advertise default route into BGP
 
+- Troubleshot default route issues:
+- Brought up NAT-facing interface (Gi0/3)
+- Configured DHCP and static default route
+- Enabled redistribution of static routes in BGP
+
+- Verified all BGP neighbors are established
+- Confirmed default route (0.0.0.0/0) is learned via EDGE loopback (10.255.35.1)
+- Validated end-to-end connectivity (successful ping to 8.8.8.8)
+
+Notes:
+- Full-mesh iBGP required without route reflectors
+- Default route must exist before BGP can advertise it
+- Next-hop-self ensures proper route installation across routers
