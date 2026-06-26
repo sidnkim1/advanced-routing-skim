@@ -41,3 +41,23 @@ Notes:
 - Full-mesh iBGP required without route reflectors
 - Default route must exist before BGP can advertise it
 - Next-hop-self ensures proper route installation across routers
+
+## 6/26/26
+- Converted full-mesh iBGP design to route reflector-based architecture
+- Selected EDGE and BB-RTR-5 as route reflectors within the topology
+- Updated all router configurations to remove full-mesh peerings
+- Configured route-reflector-client relationships on reflectors
+- Reduced BGP neighbor count on client routers to only route reflectors
+- Verified BGP session establishment after topology change
+- Confirmed route reflection behavior across all routers
+- Validated full routing table propagation using iBGP
+- Tested end-to-end connectivity across the network
+
+Notes:
+- Route reflectors significantly reduce iBGP complexity and improve scalability
+- iBGP route advertisement behavior changes when route-reflector-client is configured
+- Next-hop-self remains critical for proper route installation
+- Observed successful transition from full-mesh to RR design without loss of connectivity
+
+## 6/29/26
+- 
