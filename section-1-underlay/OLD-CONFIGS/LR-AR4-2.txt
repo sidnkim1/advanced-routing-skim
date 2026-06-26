@@ -1,0 +1,95 @@
+enable
+configure terminal
+
+hostname LR-AR4-2
+
+enable secret cisco
+username cisco secret cisco
+
+! --- Local Access ---
+line con 0
+  logging synchronous
+  login local
+  exit
+
+line vty 0 4
+  logging synchronous
+  login local
+  exit
+
+! --- Loopback ---
+interface loopback0
+  ip address 10.255.35.14 255.255.255.255
+  ip ospf 100 area 4
+
+! --- OSPF Process ---
+router ospf 100
+  router-id 10.255.35.14
+
+! --- iBGP ---
+router bgp 65501
+  bgp log-neighbor-changes
+
+  neighbor 10.255.35.1 remote-as 65501
+  neighbor 10.255.35.2 remote-as 65501
+  neighbor 10.255.35.3 remote-as 65501
+  neighbor 10.255.35.4 remote-as 65501
+  neighbor 10.255.35.5 remote-as 65501
+  neighbor 10.255.35.6 remote-as 65501
+  neighbor 10.255.35.7 remote-as 65501
+  neighbor 10.255.35.8 remote-as 65501
+  neighbor 10.255.35.9 remote-as 65501
+  neighbor 10.255.35.10 remote-as 65501
+  neighbor 10.255.35.11 remote-as 65501
+  neighbor 10.255.35.12 remote-as 65501
+  neighbor 10.255.35.13 remote-as 65501
+
+  neighbor 10.255.35.1 update-source loopback0
+  neighbor 10.255.35.2 update-source loopback0
+  neighbor 10.255.35.3 update-source loopback0
+  neighbor 10.255.35.4 update-source loopback0
+  neighbor 10.255.35.5 update-source loopback0
+  neighbor 10.255.35.6 update-source loopback0
+  neighbor 10.255.35.7 update-source loopback0
+  neighbor 10.255.35.8 update-source loopback0
+  neighbor 10.255.35.9 update-source loopback0
+  neighbor 10.255.35.10 update-source loopback0
+  neighbor 10.255.35.11 update-source loopback0
+  neighbor 10.255.35.12 update-source loopback0
+  neighbor 10.255.35.13 update-source loopback0
+
+  neighbor 10.255.35.1 next-hop-self
+  neighbor 10.255.35.2 next-hop-self
+  neighbor 10.255.35.3 next-hop-self
+  neighbor 10.255.35.4 next-hop-self
+  neighbor 10.255.35.5 next-hop-self
+  neighbor 10.255.35.6 next-hop-self
+  neighbor 10.255.35.7 next-hop-self
+  neighbor 10.255.35.8 next-hop-self
+  neighbor 10.255.35.9 next-hop-self
+  neighbor 10.255.35.10 next-hop-self
+  neighbor 10.255.35.11 next-hop-self
+  neighbor 10.255.35.12 next-hop-self
+  neighbor 10.255.35.13 next-hop-self
+
+! --- Interfaces ---
+interface g0/0
+  description to_BR-RTR-3
+  ip address 10.35.4.166 255.255.255.252
+  ip ospf 100 area 4
+  no shutdown
+
+interface g0/1
+  description to_BB-RTR-2
+  ip address 10.35.4.174 255.255.255.252
+  ip ospf 100 area 4
+  no shutdown
+
+interface g0/2
+  description to_LR-AR4-1
+  ip address 10.35.4.178 255.255.255.252
+  ip ospf 100 area 4
+  no shutdown
+
+end
+write memory
