@@ -40,46 +40,13 @@ router bgp 65501
   bgp log-neighbor-changes
 
   neighbor 10.255.35.1 remote-as 65501
-  neighbor 10.255.35.2 remote-as 65501
-  neighbor 10.255.35.3 remote-as 65501
-  neighbor 10.255.35.5 remote-as 65501
   neighbor 10.255.35.6 remote-as 65501
-  neighbor 10.255.35.7 remote-as 65501
-  neighbor 10.255.35.8 remote-as 65501
-  neighbor 10.255.35.9 remote-as 65501
-  neighbor 10.255.35.10 remote-as 65501
-  neighbor 10.255.35.11 remote-as 65501
-  neighbor 10.255.35.12 remote-as 65501
-  neighbor 10.255.35.13 remote-as 65501
-  neighbor 10.255.35.14 remote-as 65501
-
+  
   neighbor 10.255.35.1 update-source loopback0
-  neighbor 10.255.35.2 update-source loopback0
-  neighbor 10.255.35.3 update-source loopback0
-  neighbor 10.255.35.5 update-source loopback0
   neighbor 10.255.35.6 update-source loopback0
-  neighbor 10.255.35.7 update-source loopback0
-  neighbor 10.255.35.8 update-source loopback0
-  neighbor 10.255.35.9 update-source loopback0
-  neighbor 10.255.35.10 update-source loopback0
-  neighbor 10.255.35.11 update-source loopback0
-  neighbor 10.255.35.12 update-source loopback0
-  neighbor 10.255.35.13 update-source loopback0
-  neighbor 10.255.35.14 update-source loopback0
-
+  
   neighbor 10.255.35.1 next-hop-self
-  neighbor 10.255.35.2 next-hop-self
-  neighbor 10.255.35.3 next-hop-self
-  neighbor 10.255.35.5 next-hop-self
   neighbor 10.255.35.6 next-hop-self
-  neighbor 10.255.35.7 next-hop-self
-  neighbor 10.255.35.8 next-hop-self
-  neighbor 10.255.35.9 next-hop-self
-  neighbor 10.255.35.10 next-hop-self
-  neighbor 10.255.35.11 next-hop-self
-  neighbor 10.255.35.12 next-hop-self
-  neighbor 10.255.35.13 next-hop-self
-  neighbor 10.255.35.14 next-hop-self
 
 ! --- Interfaces ---
 interface g0/0
