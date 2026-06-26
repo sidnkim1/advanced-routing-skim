@@ -32,6 +32,7 @@ router ospf 100
 ! --- iBGP ---
 router bgp 65501
   bgp log-neighbor-changes
+  bgp cluster-id 1
 
   network 0.0.0.0 mask 0.0.0.0
   redistribute static
@@ -78,7 +79,19 @@ router bgp 65501
   neighbor 10.255.35.13 next-hop-self
   neighbor 10.255.35.14 next-hop-self
 
-  network 0.0.0.0
+  neighbor 10.255.35.2 route-reflector-client
+  neighbor 10.255.35.3 route-reflector-client
+  neighbor 10.255.35.4 route-reflector-client
+  neighbor 10.255.35.5 route-reflector-client
+  neighbor 10.255.35.6 route-reflector-client
+  neighbor 10.255.35.7 route-reflector-client
+  neighbor 10.255.35.8 route-reflector-client
+  neighbor 10.255.35.9 route-reflector-client
+  neighbor 10.255.35.10 route-reflector-client
+  neighbor 10.255.35.11 route-reflector-client
+  neighbor 10.255.35.12 route-reflector-client
+  neighbor 10.255.35.13 route-reflector-client
+  neighbor 10.255.35.14 route-reflector-client
 
 ! --- Default Routes ---
 ip route 0.0.0.0 0.0.0.0 dhcp
