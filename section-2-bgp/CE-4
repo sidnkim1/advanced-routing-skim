@@ -1,0 +1,40 @@
+enable
+configure terminal
+
+hostname CE-4
+
+enable secret cisco
+username cisco secret cisco
+
+! --- Local Access ---
+line con 0
+  logging synchronous
+  login local
+  exit
+
+line vty 0 4
+  logging synchronous
+  login local
+  exit
+
+! --- Loopback ---
+interface loopback0
+  ip address 100.64.4.1 255.255.255.255
+
+! --- Interfaces ---
+interface g0/0
+  description to LR-AR4-1
+  ip address 198.51.100.26 255.255.255.248
+  no shutdown
+
+! --- Static Routes ---
+ip route 100.64.4.0 255.255.255.0 null0
+
+! --- eBGP ---
+router bgp 65513
+  bgp log-neighbor-changes
+  neighbor 198.51.100.25 remote-as 65501
+  network 100.64.4.0 mask 255.255.255.0
+
+end
+write memory
