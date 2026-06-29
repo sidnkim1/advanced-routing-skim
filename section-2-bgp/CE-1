@@ -1,5 +1,22 @@
-conf t
+enable
+configure terminal
+
 hostname CE-1
+
+enable secret cisco
+username cisco secret cisco
+
+! --- Local Access ---
+line con 0
+  logging synchronous
+  login local
+  exit
+
+line vty 0 4
+  logging synchronous
+  login local
+  exit
+
 
 interface g0/0
  description to LR-AR1-1
