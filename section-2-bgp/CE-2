@@ -32,9 +32,9 @@ ip route 100.64.2.0 255.255.255.0 null0
 
 ! --- eBGP ---
 router bgp 65511
- bgp log-neighbor-changes
- neighbor 198.51.100.9 remote-as 65501
- network 100.64.2.0 mask 255.255.255.0
+  bgp log-neighbor-changes
+  neighbor 198.51.100.9 remote-as 65501
+  network 100.64.2.0 mask 255.255.255.0
 
 end
 write memory
