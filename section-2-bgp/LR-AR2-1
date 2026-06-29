@@ -1,7 +1,7 @@
 conf t
 
 interface g0/3
-  description to CE-2
+  description to CE-RTR-2
   ip address 198.51.100.9 255.255.255.248
   no shutdown
 
