@@ -1,7 +1,7 @@
 conf t
 
 interface g0/3
-  description to CE-4
+  description to CE-RTR-4
   ip address 198.51.100.25 255.255.255.248
   no shutdown
 
