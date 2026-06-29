@@ -4,9 +4,7 @@
 - Started IP addressing
 <img width="901" height="808" alt="image" src="https://github.com/user-attachments/assets/b9721673-c14c-4263-aed0-00b943ce6620" />
 
-
 ## 6/23/26
-
 - Finalized IP addressing scheme using 10.35.X.X structure and implemented across all routers
 - Adjusted addressing to place all inter-backbone (BB) links into OSPF Area 0 for proper backbone design
 - Configured all router interfaces and loopbacks in GNS3
@@ -27,12 +25,10 @@ Notes:
 - Configured full-mesh iBGP (AS 65501) using loopback peering on all routers
 - Applied update-source loopback0 and next-hop-self for all neighbors
 - Configured EDGE router to advertise default route into BGP
-
 - Troubleshot default route issues:
 - Brought up NAT-facing interface (Gi0/3)
 - Configured DHCP and static default route
 - Enabled redistribution of static routes in BGP
-
 - Verified all BGP neighbors are established
 - Confirmed default route (0.0.0.0/0) is learned via EDGE loopback (10.255.35.1)
 - Validated end-to-end connectivity (successful ping to 8.8.8.8)
@@ -60,4 +56,23 @@ Notes:
 - Observed successful transition from full-mesh to RR design without loss of connectivity
 
 ## 6/29/26
+- Completed Section 2.1: Connectivity at the Edge by integrating four CE routers into the existing transport network
+- Added CE-RTR-1 through CE-RTR-4 and established physical connections to LR-AR1-1 through LR-AR4-1
+- Configured eBGP peerings between CE routers (AS 65510–65513) and leaf routers (AS 65501)
+- Implemented /29 transit networks from 198.51.100.0/24 for CE-to-LR connectivity
+- Assigned /24 public prefixes from 100.64.0.0/10 to each CE router and configured loopback interfaces (/32)
+- Created static null0 routes on CE routers to support BGP network advertisement requirements
+- Advertised CE public prefixes into the iBGP domain through leaf routers
+- Verified route propagation across the entire network through BGP
+- Confirmed default route reception on all CE routers from leaf routers
+- Validated full end-to-end connectivity between all CE routers via loopback addresses
+- Corrected misconfigured BGP neighbor on LR-AR4-1 to restore proper topology
+
+Notes:
+- Reinforced understanding of eBGP vs iBGP behavior and next-hop handling
+- Observed how BGP requires an exact prefix match in the RIB for advertisement
+- Practiced subnetting with /29 point-to-point links for scalable edge connectivity
+- Confirmed proper route propagation through route reflectors without impacting core stability
+
+## 6/30/26
 - 
