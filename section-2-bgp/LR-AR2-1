@@ -1,12 +1,12 @@
 conf t
 
 interface g0/3
- description to CE-2
- ip address 198.51.100.9 255.255.255.248
- no shutdown
+  description to CE-2
+  ip address 198.51.100.9 255.255.255.248
+  no shutdown
 
 router bgp 65501
- neighbor 198.51.100.10 remote-as 65511
+  neighbor 198.51.100.10 remote-as 65511
 
 end
 write memory
