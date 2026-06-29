@@ -1,7 +1,7 @@
 enable
 configure terminal
 
-hostname CE-1
+hostname CE-RTR-1
 
 enable secret cisco
 username cisco secret cisco
