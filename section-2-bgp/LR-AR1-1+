@@ -28,10 +28,3 @@ router bgp 65501
   neighbor 10.255.35.6 send-community
 
 end
-
-conf t
-ip prefix-list DEFAULT-ONLY permit 0.0.0.0/0
-
-router bgp 65501
-  neighbor 198.51.100.18 prefix-list DEFAULT-ONLY out
-end
