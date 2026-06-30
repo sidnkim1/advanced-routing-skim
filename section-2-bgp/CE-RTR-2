@@ -39,3 +39,16 @@ router bgp 65511
 
 end
 write memory
+
+! --- 2.2 ---
+
+conf t
+
+route-map NO-EXPORT permit 10
+  set community no-export
+
+router bgp 65511
+  neighbor 198.51.100.9 route-map NO-EXPORT out
+  neighbor 198.51.100.9 send-community
+
+end
