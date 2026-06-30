@@ -24,4 +24,7 @@ route-map CE2-IN permit 10
 
 router bgp 65501
   neighbor 198.51.100.10 route-map CE2-IN in
+  neighbor 10.255.35.1 send-community
+  neighbor 10.255.35.6 send-community
+
 end
