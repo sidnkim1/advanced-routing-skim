@@ -75,4 +75,22 @@ Notes:
 - Confirmed proper route propagation through route reflectors without impacting core stability
 
 ## 6/30/26
+- Completed Section 2.2: Controlling BGP Prefix Advertisement and Reception
+- Implemented inbound route filtering on all leaf routers to only accept assigned CE /24 prefixes
+- Configured route-maps on CE-RTR-1 and CE-RTR-2 to apply no-export community to outbound routes
+- Enabled community propagation across iBGP by configuring send-community on route reflectors
+- Verified successful distribution of no-export community across all leaf routers
+- Implemented prefix-list filtering on LR-AR3-1 and LR-AR4-1 to advertise only default routes to CE-RTR-3 and CE-RTR-4
+- Confirmed that CE-RTR-3 and CE-RTR-4 only receive a default route as intended
+- Validated that CE-RTR-1 and CE-RTR-2 retain selective route visibility while maintaining connectivity
+- Tested end-to-end connectivity using loopback-sourced traffic to confirm policy does not break reachability
+
+Notes:
+- BGP communities require send-community to propagate across iBGP and route reflectors
+- no-export affects advertisement to eBGP peers, not visibility within the AS
+- Prefix filtering allows control of route visibility without impacting reachability
+- Observed distinction between route visibility and forwarding capability using default routes
+- Gained experience implementing policy-based routing behavior in a scalable BGP design
+
+## 7/1/26
 - 
