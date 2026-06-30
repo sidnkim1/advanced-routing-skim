@@ -6,6 +6,7 @@ interface g0/3
   no shutdown
 
 router bgp 65501
+  neighbor 198.51.100.10 next-hop-self
   neighbor 198.51.100.10 remote-as 65511
 
 end
