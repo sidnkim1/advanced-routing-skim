@@ -1,0 +1,16 @@
+conf t
+router bgp 65501
+ neighbor 10.255.35.1 send-community
+ neighbor 10.255.35.2 send-community
+ neighbor 10.255.35.3 send-community
+ neighbor 10.255.35.4 send-community
+ neighbor 10.255.35.5 send-community
+ neighbor 10.255.35.7 send-community
+ neighbor 10.255.35.8 send-community
+ neighbor 10.255.35.9 send-community
+ neighbor 10.255.35.10 send-community
+ neighbor 10.255.35.11 send-community
+ neighbor 10.255.35.12 send-community
+ neighbor 10.255.35.13 send-community
+ neighbor 10.255.35.14 send-community
+end
