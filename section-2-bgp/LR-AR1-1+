@@ -20,8 +20,8 @@ conf t
 ip prefix-list CE1-IN permit 100.64.1.0/24
 
 route-map CE1-IN permit 10
- match ip address prefix-list CE1-IN
+  match ip address prefix-list CE1-IN
 
 router bgp 65501
- neighbor 198.51.100.2 route-map CE1-IN in
+  neighbor 198.51.100.2 route-map CE1-IN in
 end
