@@ -92,5 +92,5 @@ Notes:
 - Observed distinction between route visibility and forwarding capability using default routes
 - Gained experience implementing policy-based routing behavior in a scalable BGP design
 
-## 7/1/26
+## 7/2/26
 - 
