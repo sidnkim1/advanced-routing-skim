@@ -12,4 +12,14 @@ interface GigabitEthernet0/1
   ip address 10.2.2.1 255.255.255.0
   no shut
 
+! ISAKMP Policy: AES Encryption, SHA Hashing, Pre-Shared Key Authentication, Diffie-Hellman Group 2
+crypto isakmp policy 1
+  encryption aes
+  hash sha
+  authentication pre-share
+  group 2
+
+! Define CE-RTR-1 as Trusted Peer
+crypto isakmp key qwe-123 address 198.51.100.2
+
 end
