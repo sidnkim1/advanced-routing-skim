@@ -25,4 +25,7 @@ crypto isakmp key qwe-123 address 198.51.100.10
 ! Transform Set: ESP AES Encryption, ESP SHA HMAC Integrity
 crypto ipsec transform-set CE1-CE2-TS esp-aes esp-sha-hmac
 
+! Encrypt Traffic from CE-RTR-1 LAN to CE-RTR-2 LAN
+access-list 100 permit ip 10.1.1.0 0.0.0.255 10.2.2.0 0.0.0.255
+
 end
