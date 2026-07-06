@@ -2,8 +2,8 @@
 
 conf t
 
-! advertise 198.51.100.9/29 prefix
 router bgp 65511
+  ! Advertise 198.51.100.8/29 prefix
   network 198.51.100.8 mask 255.255.255.248
 
 interface GigabitEthernet0/1
