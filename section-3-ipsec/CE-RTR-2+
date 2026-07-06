@@ -2,10 +2,11 @@
 
 conf t
 
+! Advertise 198.51.100.8/29 prefix
 router bgp 65511
-  ! Advertise 198.51.100.8/29 prefix
   network 198.51.100.8 mask 255.255.255.248
 
+! Configure port to HOST-A
 interface GigabitEthernet0/1
   description to_HOST-B
   ip address 10.2.2.1 255.255.255.0
