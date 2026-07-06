@@ -1,0 +1,5 @@
+! --- 3.1 ---
+
+conf t
+ip prefix-list CE1-IN permit 198.51.100.0/29
+end
