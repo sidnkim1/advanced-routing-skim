@@ -22,4 +22,7 @@ crypto isakmp policy 1
 ! Define CE-RTR-1 as Trusted Peer
 crypto isakmp key qwe-123 address 198.51.100.2
 
+! Transform Set: ESP AES Encryption, ESP SHA HMAC Integrity
+crypto ipsec transform-set CE1-CE2-TS esp-aes esp-sha-hmac
+
 end
