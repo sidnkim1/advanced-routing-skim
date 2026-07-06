@@ -126,11 +126,14 @@ Notes:
 - Observed how IPsec creates an overlay network on top of the existing OSPF/iBGP transport infrastructure
 
 ! Route Reflector Routes (at this stage)
+
 <img width="659" height="370" alt="image" src="https://github.com/user-attachments/assets/1da99cbc-8a4e-481d-8d73-deef8a50f8d8" />
 
 ! Host PC traffic through tunnel
+
 <img width="726" height="427" alt="image" src="https://github.com/user-attachments/assets/3fafc57e-261f-4d21-b6af-08620ea0a762" />
 
 ! CE-RTR-1 crypto/tunnel details
+
 <img width="690" height="765" alt="image" src="https://github.com/user-attachments/assets/f83b2cf9-0ac4-4bd3-b0a4-2033a2960c29" />
 
