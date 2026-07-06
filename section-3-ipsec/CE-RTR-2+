@@ -41,4 +41,7 @@ interface GigabitEthernet0/0
   ! Apply IPsec Tunnel Policy
   crypto map CE1-CE2-MAP
 
+! Route CE-RTR-1 LAN Toward Provider Network
+ip route 10.1.1.0 255.255.255.0 198.51.100.9
+
 end
