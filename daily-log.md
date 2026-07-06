@@ -93,4 +93,34 @@ Notes:
 - Gained experience implementing policy-based routing behavior in a scalable BGP design
 
 ## 7/6/26
-- 
+- Began Section 3.1: Overlay Technologies – Policy-Based IPsec Tunnels
+- Selected CE-RTR-1 and CE-RTR-2 as IPsec tunnel endpoints
+- Advertised WAN transit networks (198.51.100.0/29 and 198.51.100.8/29) into BGP using network statements
+- Modified inbound BGP filters on LR-AR1-1 and LR-AR2-1 to permit advertisement of CE WAN prefixes
+- Refreshed BGP sessions and verified successful receipt of new prefixes on leaf routers
+- Validated propagation of WAN prefixes throughout AS 65501 using BGP routing table verification
+- Confirmed end-to-end reachability between IPsec peer addresses (198.51.100.2 and 198.51.100.10)
+- Created internal LAN segments behind CE-RTR-1 and CE-RTR-2 using 10.1.1.0/24 and 10.2.2.0/24 networks
+- Added interface descriptions and documentation comments throughout router configurations
+- Deployed and configured VPCS hosts behind both CE routers
+- Verified local host-to-gateway connectivity at each site
+- Confirmed RFC1918 networks were not reachable across the provider network prior to tunnel deployment
+- Configured ISAKMP Phase 1 policies using AES encryption, SHA hashing, pre-shared key authentication, and DH Group 2
+- Implemented Phase 2 IPsec transform sets using ESP-AES and ESP-SHA-HMAC
+- Created interesting traffic ACLs to identify traffic between internal LANs for encryption
+- Built crypto maps defining tunnel peers, transform sets, and protected traffic
+- Applied crypto maps to CE WAN interfaces and configured static routes to remote protected networks
+- Initiated tunnel establishment by generating traffic between internal hosts
+- Verified successful IPsec tunnel negotiation and Security Association establishment
+- Confirmed QM_IDLE ISAKMP state and ACTIVE(ACTIVE) inbound and outbound IPsec Security Associations
+- Validated encryption and decryption counters were incrementing during host-to-host communication
+- Successfully established secure connectivity between 10.1.1.0/24 and 10.2.2.0/24 across the transport network
+- Performed traceroute testing and observed encrypted traffic behavior across the IPsec overlay
+
+Notes:
+- Policy-based IPsec uses crypto maps and ACLs rather than tunnel interfaces
+- Transport network provides BGP reachability while IPsec functions as an encrypted overlay
+- RFC1918 routes remain isolated from the provider network and are transported securely through the tunnel
+- Initial ping loss is expected while Phase 1 and Phase 2 negotiations complete
+- Successful tunnel operation is verified through QM_IDLE state, ACTIVE Security Associations, and increasing encrypt/decrypt counters
+- Observed how IPsec creates an overlay network on top of the existing OSPF/iBGP transport infrastructure
