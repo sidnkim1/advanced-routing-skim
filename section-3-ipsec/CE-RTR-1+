@@ -37,4 +37,8 @@ crypto map CE1-CE2-MAP 10 ipsec-isakmp
   ! Interesting Traffic ACL
   match address 100
 
+interface GigabitEthernet0/0
+  ! Apply IPsec Tunnel Policy
+  crypto map CE1-CE2-MAP
+
 end
