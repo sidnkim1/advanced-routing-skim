@@ -2,6 +2,7 @@
 
 conf t
 
+! advertise 198.51.100.9/29 prefix
 router bgp 65511
   network 198.51.100.8 mask 255.255.255.248
 
