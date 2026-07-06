@@ -6,7 +6,10 @@ router bgp 65510
   network 198.51.100.0 mask 255.255.255.248
 
 interface GigabitEthernet0/1
+  description to_HOST-A
   ip address 10.1.1.1 255.255.255.0
   no shut
+
+
 
 end
