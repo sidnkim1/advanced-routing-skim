@@ -1,0 +1,47 @@
+! --- 3.1 ---
+
+conf t
+
+! Advertise 198.51.100.0/29 prefix
+router bgp 65510
+  network 198.51.100.0 mask 255.255.255.248
+
+! Configure port to HOST-A
+interface GigabitEthernet0/1
+  description to_HOST-A
+  ip address 10.1.1.1 255.255.255.0
+  no shut
+
+! ISAKMP Policy: AES Encryption, SHA Hashing, Pre-Shared Key Authentication, Diffie-Hellman Group 2
+crypto isakmp policy 1
+  encryption aes
+  hash sha
+  authentication pre-share
+  group 2
+
+! Define CE-RTR-2 as Trusted Peer
+crypto isakmp key qwe-123 address 198.51.100.10
+
+! Transform Set: ESP AES Encryption, ESP SHA HMAC Integrity
+crypto ipsec transform-set CE1-CE2-TS esp-aes esp-sha-hmac
+
+! Encrypt Traffic from CE-RTR-1 LAN to CE-RTR-2 LAN
+access-list 100 permit ip 10.1.1.0 0.0.0.255 10.2.2.0 0.0.0.255
+
+! Site-to-Site Tunnel (Peer: CE-RTR-2)
+crypto map CE1-CE2-MAP 10 ipsec-isakmp
+  ! Remote IPsec Peer
+  set peer 198.51.100.10
+  ! Phase 2 Policy
+  set transform-set CE1-CE2-TS
+  ! Interesting Traffic ACL
+  match address 100
+
+interface GigabitEthernet0/0
+  ! Apply IPsec Tunnel Policy
+  crypto map CE1-CE2-MAP
+
+! Route CE-RTR-2 LAN Toward Provider Network
+ip route 10.2.2.0 255.255.255.0 198.51.100.1
+
+end
