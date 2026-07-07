@@ -1,8 +1,0 @@
-! --- 3.1 ---
-
-conf t
-
-! Permit CE-RTR-1 WAN Prefix Into AS 65501
-ip prefix-list CE1-IN permit 198.51.100.0/29
-
-end
