@@ -4,6 +4,7 @@
 - Started IP addressing
 <img width="901" height="808" alt="image" src="https://github.com/user-attachments/assets/b9721673-c14c-4263-aed0-00b943ce6620" />
 
+
 ## 6/23/26
 - Finalized IP addressing scheme using 10.35.X.X structure and implemented across all routers
 - Adjusted addressing to place all inter-backbone (BB) links into OSPF Area 0 for proper backbone design
@@ -20,6 +21,7 @@ Notes:
 - Summarization working as expected (only /27 routes seen for remote areas)
 - Backbone Area 0 design is now consistent and stable
 - Network convergence observed after link changes
+
 
 ## 6/25/26
 - Configured full-mesh iBGP (AS 65501) using loopback peering on all routers
@@ -38,6 +40,7 @@ Notes:
 - Default route must exist before BGP can advertise it
 - Next-hop-self ensures proper route installation across routers
 
+
 ## 6/26/26
 - Converted full-mesh iBGP design to route reflector-based architecture
 - Selected EDGE and BB-RTR-5 as route reflectors within the topology
@@ -54,6 +57,7 @@ Notes:
 - iBGP route advertisement behavior changes when route-reflector-client is configured
 - Next-hop-self remains critical for proper route installation
 - Observed successful transition from full-mesh to RR design without loss of connectivity
+
 
 ## 6/29/26
 - Completed Section 2.1: Connectivity at the Edge by integrating four CE routers into the existing transport network
@@ -74,6 +78,7 @@ Notes:
 - Practiced subnetting with /29 point-to-point links for scalable edge connectivity
 - Confirmed proper route propagation through route reflectors without impacting core stability
 
+
 ## 6/30/26
 - Completed Section 2.2: Controlling BGP Prefix Advertisement and Reception
 - Implemented inbound route filtering on all leaf routers to only accept assigned CE /24 prefixes
@@ -91,6 +96,7 @@ Notes:
 - Prefix filtering allows control of route visibility without impacting reachability
 - Observed distinction between route visibility and forwarding capability using default routes
 - Gained experience implementing policy-based routing behavior in a scalable BGP design
+
 
 ## 7/6/26
 - Began Section 3.1: Overlay Technologies – Policy-Based IPsec Tunnels
@@ -137,3 +143,38 @@ Notes:
 
 <img width="690" height="765" alt="image" src="https://github.com/user-attachments/assets/f83b2cf9-0ac4-4bd3-b0a4-2033a2960c29" />
 
+
+## 7/9/26
+- Completed Section 3.2: Hub and Spoke IPsec with IGP Routing
+- Removed the policy-based IPsec tunnel configuration from Section 3.1 on CE-RTR-1 and CE-RTR-2
+- Validated removal of existing Security Associations and confirmed a clean IPsec state before deployment
+- Designated CE-RTR-1 as the IPsec Hub and CE-RTR-2 through CE-RTR-4 as Spokes
+- Added a second internal LAN segment to each CE router to support multi-subnet route advertisement
+- Configured IPsec keyrings, ISAKMP policies, transform sets, and IPsec profiles on the Hub router
+- Implemented a Virtual-Template on CE-RTR-1 to dynamically create Virtual-Access interfaces for spoke connections
+- Configured Tunnel0 interfaces on CE-RTR-2, CE-RTR-3, and CE-RTR-4 using IP unnumbered Loopback0 addressing
+- Established dynamic route-based IPsec tunnels from all spokes to the Hub router
+- Troubleshot spoke connectivity issues caused by missing advertisement and filtering of CE-RTR-3 and CE-RTR-4 WAN transit networks
+- Modified BGP advertisements and prefix filters to allow transit reachability for all hub-and-spoke tunnel endpoints
+- Verified successful tunnel establishment by confirming Tunnel0 interfaces were up/up on all spokes
+- Verified dynamic creation of Virtual-Access interfaces on the Hub router for each connected spoke
+- Confirmed three active ISAKMP peer relationships and successful IPsec Security Associations for all spoke tunnels
+- Enabled EIGRP ASN 100 across the IPsec overlay network
+- Advertised loopback interfaces and internal LAN subnets into EIGRP from all CE routers
+- Verified EIGRP neighbor adjacencies formed between the Hub and all spoke routers across Virtual-Access interfaces
+- Added and configured two VPCS hosts behind each CE router to activate all internal LAN segments
+- Validated EIGRP route propagation between all sites and confirmed remote subnet learning across the overlay
+- Verified spoke-to-spoke communication by successfully transmitting traffic between hosts located behind different CE sites
+- Documented end-to-end forwarding behavior demonstrating how traffic is decrypted, routed by the Hub, re-encrypted, and forwarded to the destination spoke
+
+Notes:
+- Route-based IPsec uses Tunnel interfaces and IPsec profiles instead of crypto maps and interesting traffic ACLs
+- Virtual-Templates dynamically generate Virtual-Access interfaces when spokes connect to the Hub
+- EIGRP runs across the encrypted overlay and automatically distributes remote LAN reachability information
+- The transport network only forwards encrypted IPsec traffic and has no knowledge of internal RFC1918 networks
+- Hub-and-spoke topology significantly reduces tunnel count compared to full-mesh VPN deployments
+- Spoke-to-spoke communication is achieved by routing traffic through the Hub, where packets are decrypted, routed, and re-encrypted toward the destination spoke
+
+<img width="705" height="786" alt="image" src="https://github.com/user-attachments/assets/e24287f1-2f1c-47d0-927c-1c253d2b6043" />
+
+<img width="530" height="265" alt="image" src="https://github.com/user-attachments/assets/ab6d0cf1-12e2-4cd4-b3f7-55169ff7f3e5" />
