@@ -1,0 +1,6 @@
+conf t
+
+! Permit CE-RTR-3 WAN Prefix
+ip prefix-list CE3-IN seq 10 permit 198.51.100.16/29
+
+end
