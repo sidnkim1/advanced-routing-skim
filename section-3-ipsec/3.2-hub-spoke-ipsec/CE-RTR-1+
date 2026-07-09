@@ -55,4 +55,19 @@ crypto isakmp profile VTI_ISAKMP
 
 end
 
+! --- EIGRP ---
+conf t
+
+! Enable EIGRP over IPsec Overlay
+router eigrp 100
+  ! Hub Loopback
+  network 100.64.1.1 0.0.0.0
+  ! Internal LAN-A
+  network 10.1.1.0 0.0.0.255
+  ! Internal LAN-B
+  network 10.1.2.0 0.0.0.255
+  no auto-summary
+
+end
+
 write memory
