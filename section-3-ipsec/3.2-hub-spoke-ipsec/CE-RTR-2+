@@ -14,4 +14,36 @@ interface GigabitEthernet0/2
 
 end
 
+! --- Spoke Configs ---
+conf t
+
+! Define Hub as Trusted Peer
+crypto isakmp key ipsec-secret-key address 198.51.100.2
+
+! Phase 1 Policy
+crypto isakmp policy 10
+  encryption aes
+  hash sha
+  authentication pre-share
+  group 2
+
+! Phase 2 Transform Set
+crypto ipsec transform-set VTI_TRANSFORM esp-aes esp-sha-hmac
+  mode tunnel
+
+! IPsec Profile
+crypto ipsec profile VTI_PROFILE
+  set transform-set VTI_TRANSFORM
+
+! Route-Based Tunnel to Hub
+interface Tunnel0
+  description IPsec Hub Tunnel - CE-RTR-1
+  ip unnumbered Loopback0
+  tunnel source GigabitEthernet0/0
+  tunnel destination 198.51.100.2
+  tunnel mode ipsec ipv4
+  tunnel protection ipsec profile VTI_PROFILE
+
+end
+
 write memory
