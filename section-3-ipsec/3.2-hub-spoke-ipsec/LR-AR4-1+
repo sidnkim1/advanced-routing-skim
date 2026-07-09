@@ -1,0 +1,6 @@
+conf t
+
+! Permit CE-RTR-4 WAN Prefix
+ip prefix-list CE4-IN seq 10 permit 198.51.100.24/29
+
+end
