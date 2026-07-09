@@ -1,0 +1,69 @@
+# CE-RTR-1 (Hub)
+
+## HOST-1A
+Connected to:
+CE-RTR-1 Gi0/1
+Configuration:
+ip 10.1.1.10/24 10.1.1.1
+save
+
+## HOST-1B
+Connected to:
+CE-RTR-1 Gi0/2
+Configuration:
+ip 10.1.2.10/24 10.1.2.1
+save
+
+***
+
+# CE-RTR-2
+
+## HOST-2A
+Connected to:
+CE-RTR-2 Gi0/1
+Configuration:
+ip 10.2.1.10/24 10.2.1.1
+save
+
+## HOST-2B
+Connected to:
+CE-RTR-2 Gi0/2
+Configuration:
+ip 10.2.2.10/24 10.2.2.1
+save
+
+***
+
+# CE-RTR-3
+
+## HOST-3A
+Connected to:
+CE-RTR-3 Gi0/1
+Configuration:
+ip 10.3.1.10/24 10.3.1.1
+save
+
+## HOST-3B
+Connected to:
+CE-RTR-3 Gi0/2
+Configuration:
+ip 10.3.2.10/24 10.3.2.1
+save
+
+***
+
+# CE-RTR-4
+
+## HOST-4A
+Connected to:
+CE-RTR-4 Gi0/1
+Configuration:
+ip 10.4.1.10/24 10.4.1.1
+save
+
+## HOST-4B
+Connected to:
+CE-RTR-4 Gi0/2
+Configuration:
+ip 10.4.2.10/24 10.4.2.1
+save
