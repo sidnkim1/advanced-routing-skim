@@ -49,4 +49,16 @@ interface Tunnel0
 
 end
 
+! --- EIGRP ---
+conf t
+
+router eigrp 100
+  network 100.64.4.1 0.0.0.0
+  network 10.4.1.0 0.0.0.255
+  network 10.4.2.0 0.0.0.255
+  
+  no auto-summary
+
+end
+
 write memory
