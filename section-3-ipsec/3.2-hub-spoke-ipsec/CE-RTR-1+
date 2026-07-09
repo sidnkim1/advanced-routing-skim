@@ -8,4 +8,51 @@ interface GigabitEthernet0/2
 
 end
 
+! --- Configure Hub ---
+conf t
+
+! IPsec Peer Keyring
+crypto keyring IPSEC_KEYS
+  ! CE-RTR-2
+  pre-shared-key address 198.51.100.10 key ipsec-secret-key
+  ! CE-RTR-3
+  pre-shared-key address 198.51.100.18 key ipsec-secret-key
+  ! CE-RTR-4
+  pre-shared-key address 198.51.100.26 key ipsec-secret-key
+
+! Phase 1 Policy
+crypto isakmp policy 10
+  encryption aes
+  hash sha
+  authentication pre-share
+  group 2
+
+! Phase 2 Transform Set
+crypto ipsec transform-set VTI_TRANSFORM esp-aes esp-sha-hmac
+  mode tunnel
+
+! IPsec Profile
+crypto ipsec profile VTI_PROFILE
+  set transform-set VTI_TRANSFORM
+
+! Dynamic Tunnel Template
+interface Virtual-Template1 type tunnel
+  description Dynamic Hub IPsec Template
+  ip unnumbered Loopback0
+  tunnel mode ipsec ipv4
+  tunnel protection ipsec profile VTI_PROFILE
+
+! ISAKMP Profile
+crypto isakmp profile VTI_ISAKMP
+  keyring IPSEC_KEYS
+  ! Spoke-B
+  match identity address 198.51.100.10 255.255.255.255
+  ! Spoke-C
+  match identity address 198.51.100.18 255.255.255.255
+  ! Spoke-D
+  match identity address 198.51.100.26 255.255.255.255
+  virtual-template 1
+
+end
+
 write memory
