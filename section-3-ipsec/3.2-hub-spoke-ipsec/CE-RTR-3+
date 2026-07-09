@@ -14,7 +14,7 @@ interface GigabitEthernet0/2
 
 end
 
-! --- Spoke 3 Configs ---
+! --- Spoke 2 Configs ---
 
 conf t
 
