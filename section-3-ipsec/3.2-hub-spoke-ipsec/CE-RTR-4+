@@ -12,6 +12,9 @@ interface GigabitEthernet0/2
   ip address 10.4.2.1 255.255.255.0
   no shutdown
 
+router bgp 65513
+  network 198.51.100.24 mask 255.255.255.248
+
 end
 
 ! --- Spoke 3 Configs ---
