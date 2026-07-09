@@ -14,7 +14,7 @@ interface GigabitEthernet0/2
 
 end
 
-! --- Spoke Configs ---
+! --- Spoke 1 Configs ---
 conf t
 
 ! Define Hub as Trusted Peer
