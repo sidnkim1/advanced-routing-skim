@@ -1,20 +1,24 @@
 conf t
 
-! Remove Phase 1 Peer Definition
+! Remove Phase 1 Pre-Shared Key
 no crypto isakmp key qwe-123 address 198.51.100.10
 
-! Remove Phase 2 Transform Set
-no crypto ipsec transform-set CE1-CE2-TS
+! Remove Phase 1 ISAKMP Policy
+no crypto isakmp policy 1
 
-! Remove Interesting Traffic ACL
-no access-list 100
-
-! Remove Crypto Map from WAN Interface
+! Remove Crypto Map From WAN Interface
 interface GigabitEthernet0/0
  no crypto map CE1-CE2-MAP
 
 ! Remove Crypto Map Definition
 no crypto map CE1-CE2-MAP
 
+! Remove Interesting Traffic ACL
+no access-list 100
+
+! Remove Phase 2 Transform Set
+no crypto ipsec transform-set CE1-CE2-TS
+
 end
+
 write memory
