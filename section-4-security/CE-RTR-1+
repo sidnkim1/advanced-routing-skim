@@ -1,0 +1,28 @@
+conf t
+
+! NAT Eligible Networks
+ip access-list standard NAT_POOL
+  10 permit 10.1.1.0 0.0.0.255
+  20 permit 10.1.2.0 0.0.0.255
+
+! Inside Interface
+interface GigabitEthernet0/1
+  description HOST-1A LAN
+  ip nat inside
+
+interface GigabitEthernet0/2
+  description HOST-1B LAN
+  ip nat inside
+
+! Outside interface
+interface GigabitEthernet0/0
+  description WAN Interface
+  ip nat outside
+
+
+! PAT Using WAN Interface Address
+ip nat inside source list NAT_POOL interface GigabitEthernet0/0 overload
+
+end
+
+write memory
