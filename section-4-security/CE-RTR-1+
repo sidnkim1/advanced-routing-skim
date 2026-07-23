@@ -12,11 +12,11 @@ interface GigabitEthernet0/1
 interface GigabitEthernet0/2
   ip nat inside
 
-! NAT Outside interface
+! NAT Outside Interface
 interface GigabitEthernet0/0
   ip nat outside
 
-! PAT Using WAN Interface Address
+! Enable PAT
 ip nat inside source list NAT_POOL interface GigabitEthernet0/0 overload
 
 end
