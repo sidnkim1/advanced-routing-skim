@@ -1,0 +1,29 @@
+conf t
+
+! NAT Eligible Networks
+ip access-list standard NAT_POOL
+  10 permit 100.64.1.0 0.0.0.255
+  20 permit 100.64.2.0 0.0.0.255
+  30 permit 100.64.3.0 0.0.0.255
+  40 permit 100.64.4.0 0.0.0.255
+
+! NAT Inside Interfaces
+interface GigabitEthernet0/0
+  ip nat inside
+
+interface GigabitEthernet0/1
+  ip nat inside
+
+interface GigabitEthernet0/2
+  ip nat inside
+
+! NAT Outside Interface
+interface GigabitEthernet0/3
+  ip nat outside
+
+! Enable PAT
+ip nat inside source list NAT_POOL interface GigabitEthernet0/3 overload
+
+end
+
+write memory
