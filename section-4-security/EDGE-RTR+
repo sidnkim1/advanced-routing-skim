@@ -2,10 +2,7 @@ conf t
 
 ! NAT Eligible Networks
 ip access-list standard NAT_POOL
-  10 permit 100.64.1.0 0.0.0.255
-  20 permit 100.64.2.0 0.0.0.255
-  30 permit 100.64.3.0 0.0.0.255
-  40 permit 100.64.4.0 0.0.0.255
+  10 permit 198.51.100.0 0.0.0.255
 
 ! NAT Inside Interfaces
 interface GigabitEthernet0/0
