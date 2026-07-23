@@ -178,3 +178,40 @@ Notes:
 <img width="705" height="786" alt="image" src="https://github.com/user-attachments/assets/e24287f1-2f1c-47d0-927c-1c253d2b6043" />
 
 <img width="530" height="265" alt="image" src="https://github.com/user-attachments/assets/ab6d0cf1-12e2-4cd4-b3f7-55169ff7f3e5" />
+
+
+## 7/23/26
+
+- Began Section 4.1: Network Address Translation (NAT) and Internet Connectivity
+- Reviewed existing hub-and-spoke IPsec and EIGRP overlay topology to confirm end-to-end connectivity before implementing Internet access
+- Implemented PAT (Port Address Translation) on all CE routers using the WAN-facing interface address as the translation address
+- Created standard NAT access lists on CE routers to identify internal LAN networks for translation
+- Configured GigabitEthernet0/1 and GigabitEthernet0/2 as NAT inside interfaces on all CE routers
+- Configured GigabitEthernet0/0 as the NAT outside interface on all CE routers
+- Applied PAT using the CE WAN interface with the `overload` option
+- Verified creation of NAT translations and confirmed traffic was successfully matching NAT policies
+- Troubleshot failed Internet connectivity despite successful NAT translations on CE routers
+- Validated default route propagation from EDGE through AS 65501 and to all CE routers
+- Verified OSPF, iBGP, eBGP, EIGRP, and IPsec operation to eliminate routing-related causes
+- Performed path analysis and traceroute testing from CE routers to EDGE and Internet destinations
+- Determined that PAT was functioning properly on CE routers, but return traffic from the GNS3 Internet cloud was not reaching translated CE addresses
+- Identified that an additional PAT policy was required on the EDGE router because traffic arriving from CE routers had already been translated to 198.51.100.X addresses
+- Removed the initial EDGE NAT policy and replaced it with a PAT configuration matching the 198.51.100.0/24 WAN address space
+- Configured EDGE provider-facing interfaces as NAT inside interfaces and the Internet-facing DHCP interface as NAT outside
+- Implemented PAT on the EDGE router using the Internet-facing interface address obtained from the GNS3 NAT cloud
+- Successfully restored Internet connectivity for all sites after implementing EDGE PAT
+- Validated successful ICMP connectivity from hosts behind CE routers to 8.8.8.8 and 1.1.1.1
+- Verified active NAT translations on both CE routers and the EDGE router
+- Confirmed end-to-end Internet forwarding through a double-NAT architecture within the lab environment
+
+Notes:
+- CE routers perform PAT from private LAN addresses (10.X.X.X) to their WAN addresses (198.51.100.X)
+- EDGE performs a second PAT operation from the CE WAN address space to the DHCP-assigned Internet-facing address
+- The GNS3 NAT cloud only provides return connectivity to addresses within the directly connected DHCP network, requiring translation at the Internet edge
+- NAT troubleshooting confirmed that routing, BGP, EIGRP, and IPsec were functioning correctly before identifying the issue at the Internet boundary
+- Successfully validated Internet access while preserving all existing hub-and-spoke VPN functionality
+
+<img width="633" height="415" alt="image" src="https://github.com/user-attachments/assets/ef8f1eb7-05ab-4abe-978a-31ec3a7bb10b" />
+
+<img width="624" height="413" alt="image" src="https://github.com/user-attachments/assets/b25948c8-a681-47a1-bff9-c01615981e7e" />
+
